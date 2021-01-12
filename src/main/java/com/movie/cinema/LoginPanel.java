@@ -5,6 +5,9 @@
  */
 package com.movie.cinema;
 
+import com.movie.cinema.db.AccountDao;
+import com.movie.cinema.model.Account;
+
 /**
  *
  * @author zhch
@@ -12,6 +15,7 @@ package com.movie.cinema;
 public class LoginPanel extends javax.swing.JPanel {
     
     MainFrame frame;
+    AccountDao accDao = new AccountDao();
 
     /**
      * Creates new form LoginPanel
@@ -30,18 +34,34 @@ public class LoginPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        usernameL = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        loginBtn = new javax.swing.JButton();
+        registerBtn = new javax.swing.JButton();
+        usernameT = new javax.swing.JTextField();
+        passwordT = new javax.swing.JPasswordField();
 
-        jLabel1.setText("jLabel1");
+        usernameL.setText("username:");
 
-        jLabel2.setText("jLabel2");
+        jLabel2.setText("password:");
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        loginBtn.setText("Login");
+        loginBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                loginBtnActionPerformed(evt);
+            }
+        });
+
+        registerBtn.setText("Register");
+        registerBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerBtnActionPerformed(evt);
+            }
+        });
+
+        usernameT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameTActionPerformed(evt);
             }
         });
 
@@ -50,39 +70,85 @@ public class LoginPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(93, 93, 93)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
+                        .addComponent(usernameL)
+                        .addGap(27, 27, 27)
+                        .addComponent(usernameT, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel1)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addComponent(jButton1)))
-                .addContainerGap(240, Short.MAX_VALUE))
+                            .addComponent(loginBtn))
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(registerBtn)
+                            .addComponent(passwordT, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(88, 88, 88)
-                .addComponent(jLabel1)
+                .addGap(85, 85, 85)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(usernameL)
+                    .addComponent(usernameT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addGap(34, 34, 34)
-                .addComponent(jButton1)
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(passwordT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(loginBtn)
+                    .addComponent(registerBtn))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         // TODO add your handling code here:
-        frame.changePanel("tt");
-    }//GEN-LAST:event_jButton1ActionPerformed
+        Account acc = accDao.getAccount(usernameT.getText(), new String(passwordT.getPassword()));
+        if(acc == null){
+            BaseDialog.showErr("Invalid username or password.");
+        }else{
+            frame.setAccount(acc);
+            frame.changePanel("show");
+        }
+    }//GEN-LAST:event_loginBtnActionPerformed
+
+    private void usernameTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameTActionPerformed
+
+    private void registerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBtnActionPerformed
+        String username = usernameT.getText().trim();
+        if(username.isEmpty()){
+            BaseDialog.showErr("Username is required.");
+            return;
+        }
+        String password = passwordT.getText().trim();
+        if(password.isEmpty()){
+            BaseDialog.showErr("Password is required.");
+            return;
+        }
+        Account acc = accDao.getAccount(username);
+        if(acc != null){
+            BaseDialog.showErr("Username is exists.");
+            return;
+        }
+        
+        accDao.addAccount(username, password, 10000);
+        BaseDialog.showInfo("Register successfully");
+        
+    }//GEN-LAST:event_registerBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton loginBtn;
+    private javax.swing.JPasswordField passwordT;
+    private javax.swing.JButton registerBtn;
+    private javax.swing.JLabel usernameL;
+    private javax.swing.JTextField usernameT;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,8 +5,13 @@
  */
 package com.movie.cinema;
 
+import com.movie.cinema.db.AccountDao;
+import com.movie.cinema.model.Account;
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Container;
+import javax.swing.Box;
+import javax.swing.JComponent;
 
 /**
  *
@@ -14,35 +19,98 @@ import java.awt.Container;
  */
 public class MainFrame extends javax.swing.JFrame {
     
-    TTpanel tPanel = new TTpanel();
-    LoginPanel loginPanel = new LoginPanel(this);
+    LoginPanel loginPanel; // 登录面板
+    Box verticalBox;
+    Box horizontalBox;
+     
+    ShowPanel showPanel; // 电影信息列表
+    Account acc; // 当前登录用户
+    
+    AccountDao accDao = new AccountDao();
+    
+    private static MainFrame instance;
+    public static MainFrame getInstance(){
+        return instance;
+    }
 
     /**
      * Creates new form LoginFrame
      */
     public MainFrame() {
+        instance = this;
+        showPanel = new ShowPanel();
+        loginPanel = new LoginPanel(this);
+        verticalBox = Box.createVerticalBox();
+        horizontalBox = Box.createHorizontalBox();
         initComponents();
+        setLocationRelativeTo(null);//窗体居中显示
+        
         mainPanel.setLayout(new BorderLayout());
-        mainPanel.add(loginPanel);
+        
+//        changePanel("login");
+        changePanel("show");
+        
+        acc = accDao.getAccount("a", "a");
+        setAccount(acc);
     }
     
+    /**
+     * 设置登录用户信息
+     * @param acc 
+     */
+    public void setAccount(Account acc){
+        if(acc != null){
+            
+            this.acc = acc;
+            toListItem.setEnabled(true);
+            orderListItem.setEnabled(true);
+        }else{
+            this.acc = acc;
+            toListItem.setEnabled(false);
+            orderListItem.setEnabled(false);
+        }
+    }
+    
+    /**
+     * 切换不同的界面
+     * @param name 
+     */
     public void changePanel(String name){
-        System.out.println("in change panel00");
-        mainPanel.setVisible(false);
-        mainPanel.removeAll();
-        System.out.println("in change panel01");
+        
         switch(name){
-            case "tt":
-                mainPanel.add(tPanel);
-                break;
             case "login":
-                mainPanel.add(loginPanel, BorderLayout.CENTER);
+                changePanel(loginPanel);
+                break;
+            case "show":
+                changePanel(showPanel);
+                break;
+            case "order":
+                changePanel(new OrdersPanel());
                 break;
             default:
-                mainPanel.add(loginPanel);
+                changePanel(loginPanel);
         }
+        
+    }
+    public void changePanel(JComponent component){
+        mainPanel.setVisible(false);
+        mainPanel.removeAll();
+        verticalBox.removeAll();
+        horizontalBox.removeAll();
+        
+        verticalBox.add(Box.createVerticalGlue());
+        
+        verticalBox.add(component);
+        
+        
+        verticalBox.add(Box.createVerticalGlue());
+        
+        horizontalBox.add(Box.createHorizontalGlue());
+        horizontalBox.add(verticalBox);
+        horizontalBox.add(Box.createHorizontalGlue());
+        mainPanel.add(horizontalBox, BorderLayout.CENTER);
+        
         mainPanel.setVisible(true);
-        System.out.println("in change panel02");
         
     }
 
@@ -58,8 +126,10 @@ public class MainFrame extends javax.swing.JFrame {
         mainPanel = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        orderListItem = new javax.swing.JMenuItem();
         logoutMenu = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        toListItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -71,14 +141,23 @@ public class MainFrame extends javax.swing.JFrame {
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGap(0, 841, Short.MAX_VALUE)
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 600, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("File");
+        jMenu1.setText("Account");
+
+        orderListItem.setText("My Orders");
+        orderListItem.setEnabled(false);
+        orderListItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                orderListItemActionPerformed(evt);
+            }
+        });
+        jMenu1.add(orderListItem);
 
         logoutMenu.setText("Logout");
         logoutMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -90,7 +169,17 @@ public class MainFrame extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText("Window");
+
+        toListItem.setText("ListPanel");
+        toListItem.setEnabled(false);
+        toListItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                toListItemActionPerformed(evt);
+            }
+        });
+        jMenu2.add(toListItem);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -101,8 +190,8 @@ public class MainFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 841, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,7 +208,18 @@ public class MainFrame extends javax.swing.JFrame {
     private void logoutMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutMenuActionPerformed
         // TODO add your handling code here:
         changePanel("login");
+        setAccount(null);
     }//GEN-LAST:event_logoutMenuActionPerformed
+
+    private void toListItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toListItemActionPerformed
+        // TODO add your handling code here:
+        changePanel("show");
+    }//GEN-LAST:event_toListItemActionPerformed
+
+    private void orderListItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderListItemActionPerformed
+        // TODO add your handling code here:
+        changePanel("order");
+    }//GEN-LAST:event_orderListItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,5 +263,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem logoutMenu;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JMenuItem orderListItem;
+    private javax.swing.JMenuItem toListItem;
     // End of variables declaration//GEN-END:variables
 }

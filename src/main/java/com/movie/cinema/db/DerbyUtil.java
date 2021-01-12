@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.movie.cinema;
+package com.movie.cinema.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,11 +15,14 @@ import java.sql.Statement;
  *
  * @author zhch
  */
-public class UseDB {
-
+public class DerbyUtil {
     private static String driver = "org.apache.derby.jdbc.EmbeddedDriver";
     private static String protocol = "jdbc:derby:";
-    String dbName = "database\\cinema\\";
+    static String dbName = "database\\cinema\\";
+    
+    static{
+        loadDriver();
+    }
 
     static void loadDriver() {
         try {
@@ -30,48 +33,28 @@ public class UseDB {
         }
     }
 
-    public void doIt() {
+    public static Connection getConn() {
         Connection conn = null;
-        Statement s = null;
-        ResultSet rs = null;
 
-        System.out.println("starting");
         try {
             conn = DriverManager.getConnection(protocol + dbName);
 //                    + ";create=true");
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        System.out.println("Connected to and created database " + dbName);
-
-        try {
-
-            s = conn.createStatement();
-            rs = s.executeQuery("select * from accounts");
-
-            while (rs.next()) {
-                System.out.println(rs.getInt(1));
-                System.out.println(rs.getString(2));
-            }
-        } catch (SQLException e1) {
-            e1.printStackTrace();
-        }
+        return conn;
+    }
+    
+    public static void close(Connection conn){
         try {
             conn.close();
             conn = null;
-            s.close();
-            s = null;
-            rs.close();
-            rs = null;
+//            s.close();
+//            s = null;
+//            rs.close();
+//            rs = null;
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) {
-        UseDB t = new UseDB();
-        t.loadDriver();
-        t.doIt();
     }
 }
