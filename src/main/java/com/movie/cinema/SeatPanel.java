@@ -71,7 +71,7 @@ public class SeatPanel extends javax.swing.JPanel {
             btn.addActionListener(new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent e) {
-//                    thisPanel.setText(i);
+                    thisPanel.setText(i);
                 }
             });
             if(orderedSeats.contains(i)){

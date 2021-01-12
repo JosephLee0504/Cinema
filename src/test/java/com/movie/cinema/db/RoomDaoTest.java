@@ -5,7 +5,8 @@
  */
 package com.movie.cinema.db;
 
-import com.movie.cinema.model.Account;
+import com.movie.cinema.model.Room;
+import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,25 +16,25 @@ import org.junit.jupiter.api.Test;
  * @author zhch
  */
 public class RoomDaoTest {
-    AccountDao accDao;
+    RoomDao dao;
     @BeforeEach
     void init(){
        DerbyUtil.test = true;
-       accDao = new AccountDao();
-       accDao.deleteAll();
+       dao = new RoomDao();
+       dao.deleteAll();
        for(int i=0;i<5;i++){
-           Account acc = new Account();
-           acc.setId(i+1);
-           acc.setUsername("a" + i);
-           acc.setPassword("a" + i);
-           acc.setBalance(100.0);
-           accDao.insertAccount(acc);
+           Room obj = new Room();
+           obj.setId(i+1);
+           obj.setName("room" + i);
+           obj.setCinemaid(1);
+           obj.setSeatcount(100);
+           dao.insertData(obj);
        }
     }
     
     @Test
-    void getAccountTest(){
-        Account acc = accDao.getAccount("a1");
-        assertTrue(acc != null);
+    void getRoomTest(){
+        List<Room> list = dao.getRooms();
+        assertTrue(list.size() == 5);
     }
 }

@@ -67,4 +67,25 @@ public class OrderDao extends BaseDao{
         List<Order> res = (List)query(sql, h, accid);
         return res;
     }
+    
+    
+    /**
+     * 删除所有数据
+     * @return 
+     */
+    public int deleteAll(){
+        String sql = "delete from orders where id > -10";
+        int res = update(sql);
+        return res;
+    }
+    /** 
+     * 插入一条数据
+     * @param acc
+     * @return 
+     */
+    public int insertData(Order o){
+        String sql = "insert into orders (id, scheduleid, accountid,seat,status) values(?,?,?,?,?)";
+        int res = update(sql, o.getId(), o.getScheduleid(),o.getAccountid(),o.getSeat(),o.getStatus());
+        return res;
+    }
 }

@@ -47,11 +47,11 @@ public class MainFrame extends javax.swing.JFrame {
         
         mainPanel.setLayout(new BorderLayout());
         
-//        changePanel("login");
-        changePanel("show");
+        changePanel("login");
+//        changePanel("show");
         
-        acc = accDao.getAccount("a", "a");
-        setAccount(acc);
+//        acc = accDao.getAccount("a", "a");
+//        setAccount(acc);
     }
     
     /**

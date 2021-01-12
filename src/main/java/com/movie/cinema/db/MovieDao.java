@@ -5,6 +5,7 @@
  */
 package com.movie.cinema.db;
 
+import com.movie.cinema.model.Cinema;
 import com.movie.cinema.model.Movie;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -67,6 +68,27 @@ public class MovieDao extends BaseDao{
         String sql = "select * from movies where id in " + listToString(ids);
         ResultSetHandler<List<Movie>> h = new BeanListHandler<Movie>(Movie.class);
         List<Movie> res = (List)query(sql, h);
+        return res;
+    }
+    
+    
+    /**
+     * 删除所有数据
+     * @return 
+     */
+    public int deleteAll(){
+        String sql = "delete from movies where id > -10";
+        int res = update(sql);
+        return res;
+    }
+    /** 
+     * 插入一条数据
+     * @param acc
+     * @return 
+     */
+    public int insertData(Movie o){
+        String sql = "insert into movies (id, name, mtype, mtime,mdesc,image,publishtime) values(?,?,?,?,?,?,?)";
+        int res = update(sql, o.getId(), o.getName(), o.getMtype(),o.getMtime(),o.getMdesc(), o.getImage(), o.getPublishtime());
         return res;
     }
 }

@@ -5,6 +5,7 @@
  */
 package com.movie.cinema.db;
 
+import com.movie.cinema.model.Account;
 import com.movie.cinema.model.Cinema;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,6 +54,27 @@ public class CinemaDao extends BaseDao{
         String sql = "select * from cinemas where id in " + listToString(ids);
         ResultSetHandler<List<Cinema>> h = new BeanListHandler<Cinema>(Cinema.class);
         List<Cinema> res = (List)query(sql, h);
+        return res;
+    }
+    
+    
+    /**
+     * 删除所有数据
+     * @return 
+     */
+    public int deleteAll(){
+        String sql = "delete from cinemas where id > -10";
+        int res = update(sql);
+        return res;
+    }
+    /** 
+     * 插入一条数据
+     * @param acc
+     * @return 
+     */
+    public int insertData(Cinema o){
+        String sql = "insert into cinemas (id, name, address) values(?,?,?)";
+        int res = update(sql, o.getId(), o.getName(), o.getAddress());
         return res;
     }
 }
