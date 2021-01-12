@@ -64,10 +64,12 @@ public class MainFrame extends javax.swing.JFrame {
             this.acc = acc;
             toListItem.setEnabled(true);
             orderListItem.setEnabled(true);
+            accountItem.setEnabled(true);
         }else{
             this.acc = acc;
             toListItem.setEnabled(false);
             orderListItem.setEnabled(false);
+            accountItem.setEnabled(false);
         }
     }
     
@@ -126,6 +128,7 @@ public class MainFrame extends javax.swing.JFrame {
         mainPanel = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        accountItem = new javax.swing.JMenuItem();
         orderListItem = new javax.swing.JMenuItem();
         logoutMenu = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -149,6 +152,15 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         jMenu1.setText("Account");
+
+        accountItem.setText("Account Info");
+        accountItem.setEnabled(false);
+        accountItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accountItemActionPerformed(evt);
+            }
+        });
+        jMenu1.add(accountItem);
 
         orderListItem.setText("My Orders");
         orderListItem.setEnabled(false);
@@ -221,6 +233,11 @@ public class MainFrame extends javax.swing.JFrame {
         changePanel("order");
     }//GEN-LAST:event_orderListItemActionPerformed
 
+    private void accountItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountItemActionPerformed
+        // TODO add your handling code here:
+        changePanel(new AccountPanel(acc));
+    }//GEN-LAST:event_accountItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -258,6 +275,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem accountItem;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;

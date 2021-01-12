@@ -81,7 +81,6 @@ public class MovieGridPanel extends javax.swing.JPanel {
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         // TODO add your handling code here:
-        System.out.println("frame is :" + frame);
         frame.changePanel(new MovieInfoPanel(movie));
     }//GEN-LAST:event_formMouseClicked
 

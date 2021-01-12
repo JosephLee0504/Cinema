@@ -5,17 +5,53 @@
  */
 package com.movie.cinema;
 
+import com.movie.cinema.db.MovieDao;
+import com.movie.cinema.db.ScheduleDao;
+import com.movie.cinema.model.Cinema;
+import com.movie.cinema.model.Movie;
+import com.movie.cinema.model.Schedule;
+import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import javax.swing.ScrollPaneConstants;
+
 /**
  *
  * @author zhch
  */
 public class CinemaMoviesPanel extends javax.swing.JPanel {
 
+    // 排片信息 dao
+    ScheduleDao scheduleDao = new ScheduleDao();
+    // 影片信息 dao
+    MovieDao movieDao = new MovieDao();
+    
+    Cinema cinema;
     /**
      * Creates new form CinemaMoviesPanel
      */
-    public CinemaMoviesPanel() {
+    public CinemaMoviesPanel(Cinema cinema) {
+        this.cinema = cinema;
         initComponents();
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER); 
+        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
+        updateData();
+    }
+    
+    public void updateData(){
+        List<Schedule> list = scheduleDao.getCinemaSchedules(cinema.getId());
+        conPanel.setLayout(new GridLayout(list.size(), 1));
+        List<Integer> movieids = new ArrayList<>();
+        for(Schedule sch : list){
+            movieids.add(sch.getMovieid());
+        }
+        Map<Integer, Movie> movies = movieDao.getMoviesMap(movieids);
+        for(Schedule sch : list){
+            Movie movie = movies.get(sch.getMovieid());
+            CinemaMovieGrid grid = new CinemaMovieGrid(sch, movie);
+            conPanel.add(grid);
+        }
     }
 
     /**
@@ -27,19 +63,43 @@ public class CinemaMoviesPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        scrollPane = new javax.swing.JScrollPane();
+        conPanel = new javax.swing.JPanel();
+
+        javax.swing.GroupLayout conPanelLayout = new javax.swing.GroupLayout(conPanel);
+        conPanel.setLayout(conPanelLayout);
+        conPanelLayout.setHorizontalGroup(
+            conPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 771, Short.MAX_VALUE)
+        );
+        conPanelLayout.setVerticalGroup(
+            conPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 485, Short.MAX_VALUE)
+        );
+
+        scrollPane.setViewportView(conPanel);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 773, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(90, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel conPanel;
+    private javax.swing.JScrollPane scrollPane;
     // End of variables declaration//GEN-END:variables
 }

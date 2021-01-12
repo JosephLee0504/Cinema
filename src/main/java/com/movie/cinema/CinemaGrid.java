@@ -12,11 +12,16 @@ import com.movie.cinema.model.Cinema;
  * @author zhch
  */
 public class CinemaGrid extends javax.swing.JPanel {
+    
+    MainFrame frame;
+    Cinema cinema;
 
     /**
      * Creates new form CinemaGrid
      */
     public CinemaGrid(Cinema cinema) {
+        frame = MainFrame.getInstance();
+        this.cinema = cinema;
         initComponents();
         nameL.setText(cinema.getName());
         addressL.setText(cinema.getAddress());
@@ -35,6 +40,11 @@ public class CinemaGrid extends javax.swing.JPanel {
         addressL = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         nameL.setFont(new java.awt.Font("宋体", 1, 24)); // NOI18N
         nameL.setText("cinema name");
@@ -63,6 +73,10 @@ public class CinemaGrid extends javax.swing.JPanel {
                 .addContainerGap(32, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        frame.changePanel(new CinemaMoviesPanel(cinema));
+    }//GEN-LAST:event_formMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

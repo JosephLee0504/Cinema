@@ -47,6 +47,16 @@ public class OrderDao extends BaseDao{
         return res;
     }
     /**
+     * 删除指定的订票记录
+     * @param id
+     * @return 
+     */
+    public int deleteOrder(int id){
+        String sql = "delete from orders where id=?";
+        int res = update(sql, id);
+        return res;
+    }
+    /**
      * 获取用户的订票信息
      * @param accid
      * @return 

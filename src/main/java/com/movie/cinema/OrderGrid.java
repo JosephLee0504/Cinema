@@ -5,7 +5,9 @@
  */
 package com.movie.cinema;
 
+import com.movie.cinema.db.AccountDao;
 import com.movie.cinema.db.OrderDao;
+import com.movie.cinema.db.ScheduleDao;
 import com.movie.cinema.model.Cinema;
 import com.movie.cinema.model.Movie;
 import com.movie.cinema.model.Order;
@@ -17,8 +19,13 @@ import com.movie.cinema.model.Schedule;
  */
 public class OrderGrid extends javax.swing.JPanel {
 
+    MainFrame frame;
     // 订票数据 dao
     OrderDao orderDao = new OrderDao();
+    // 排片记录 dao
+    ScheduleDao scheduleDao = new ScheduleDao();
+    // 用户信息 dao
+    AccountDao accDao = new AccountDao();
     // 订票信息
     Order order;
     
@@ -26,6 +33,7 @@ public class OrderGrid extends javax.swing.JPanel {
      * Creates new form OrderGrid
      */
     public OrderGrid(Order order, Schedule schedule, Cinema cinema, Movie movie) {
+        frame = MainFrame.getInstance();
         this.order = order;
         
         initComponents();
@@ -59,6 +67,7 @@ public class OrderGrid extends javax.swing.JPanel {
         timeL = new javax.swing.JLabel();
         useBtn = new javax.swing.JButton();
         statusL = new javax.swing.JLabel();
+        refundBtn = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -79,6 +88,18 @@ public class OrderGrid extends javax.swing.JPanel {
 
         statusL.setText("status:");
 
+        refundBtn.setText("Refund");
+        refundBtn.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                refundBtnComponentAdded(evt);
+            }
+        });
+        refundBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refundBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -91,11 +112,17 @@ public class OrderGrid extends javax.swing.JPanel {
                         .addGap(44, 44, 44)
                         .addComponent(statusL))
                     .addComponent(cinemaNameL, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(timeL, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(useBtn))
-                .addGap(19, 19, 19))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(timeL, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(useBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                        .addComponent(refundBtn)
+                        .addGap(38, 38, 38))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,7 +135,8 @@ public class OrderGrid extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cinemaNameL, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(useBtn))
+                    .addComponent(useBtn)
+                    .addComponent(refundBtn))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -124,10 +152,28 @@ public class OrderGrid extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_useBtnActionPerformed
 
+    private void refundBtnComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_refundBtnComponentAdded
+        
+        
+    }//GEN-LAST:event_refundBtnComponentAdded
+
+    private void refundBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refundBtnActionPerformed
+                                                
+        Schedule schedule = scheduleDao.getSchedule(order.getScheduleid());
+        orderDao.deleteOrder(order.getId());
+        if(schedule != null){
+            frame.acc.setBalance(frame.acc.getBalance() + schedule.getPrice());
+            accDao.updateAccount(frame.acc);
+        }
+        
+        BaseDialog.showInfo("Refund ticket successfully.");
+    }//GEN-LAST:event_refundBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel cinemaNameL;
     private javax.swing.JLabel movieNameL;
+    private javax.swing.JButton refundBtn;
     private javax.swing.JLabel statusL;
     private javax.swing.JLabel timeL;
     private javax.swing.JButton useBtn;

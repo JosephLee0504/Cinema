@@ -33,12 +33,20 @@
                   </Group>
                   <Component id="cinemaNameL" alignment="0" min="-2" pref="386" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="58" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="timeL" min="-2" pref="145" max="-2" attributes="0"/>
-                  <Component id="useBtn" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="timeL" min="-2" pref="145" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <Component id="useBtn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="54" max="32767" attributes="0"/>
+                      <Component id="refundBtn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -55,6 +63,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="cinemaNameL" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                   <Component id="useBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="refundBtn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -95,6 +104,15 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="status:"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="refundBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Refund"/>
+      </Properties>
+      <Events>
+        <EventHandler event="componentAdded" listener="java.awt.event.ContainerListener" parameters="java.awt.event.ContainerEvent" handler="refundBtnComponentAdded"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refundBtnActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

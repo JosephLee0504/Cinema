@@ -20,10 +20,15 @@ public class DerbyUtil {
     private static String protocol = "jdbc:derby:";
     static String dbName = "database\\cinema\\";
     
+    public static boolean test = false;
+    
     static{
         loadDriver();
     }
 
+    /**
+     * 加载数据库驱动
+     */
     static void loadDriver() {
         try {
             Class.forName(driver).newInstance();
@@ -33,7 +38,22 @@ public class DerbyUtil {
         }
     }
 
+    /**
+     * 获取数据库连接
+     * @return 
+     */
     public static Connection getConn() {
+        if(test){
+            return getTestConn();
+        }else{
+            return getRealConn();
+        }
+    }
+    /**
+     * 获取数据库连接
+     * @return 
+     */
+    public static Connection getRealConn() {
         Connection conn = null;
 
         try {
@@ -44,7 +64,25 @@ public class DerbyUtil {
         }
         return conn;
     }
-    
+    /**
+     * 获取测试数据库连接
+     * @return 
+     */
+    public static Connection getTestConn(){
+        Connection conn = null;
+
+        try {
+            conn = DriverManager.getConnection(protocol + "database\\cinematest\\");
+//                    + ";create=true");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return conn;
+    }
+    /**
+     * 关闭数据库连接
+     * @param conn 
+     */
     public static void close(Connection conn){
         try {
             conn.close();

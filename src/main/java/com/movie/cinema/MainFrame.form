@@ -9,6 +9,15 @@
             <Property name="text" type="java.lang.String" value="Account"/>
           </Properties>
           <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="accountItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Account Info"/>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="accountItemActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="orderListItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="My Orders"/>

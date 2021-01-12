@@ -88,4 +88,33 @@ public class AccountDao extends BaseDao{
         List<Account> res = (List)query(sql, h);
         return res;
     }
+    /**
+     * 更新账号信息
+     * @param acc
+     * @return 
+     */
+    public int updateAccount(Account acc){
+        String sql = "update accounts set username=?, password=?, balance=? where id=?";
+        int res = update(sql, acc.getUsername(), acc.getPassword(), acc.getBalance(), acc.getId());
+        return res;
+    }
+    /**
+     * 删除所有数据
+     * @return 
+     */
+    public int deleteAll(){
+        String sql = "delete from accounts where id > -1";
+        int res = update(sql);
+        return res;
+    }
+    /** 
+     * 插入一条数据
+     * @param acc
+     * @return 
+     */
+    public int insertAccount(Account acc){
+        String sql = "insert into accounts (id, username, password, balance) values(?,?,?,?)";
+        int res = update(sql, acc.getId(), acc.getUsername(), acc.getPassword(), acc.getBalance());
+        return res;
+    }
 }

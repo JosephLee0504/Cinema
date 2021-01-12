@@ -5,6 +5,7 @@
  */
 package com.movie.cinema;
 
+import com.movie.cinema.db.AccountDao;
 import com.movie.cinema.db.MovieDao;
 import com.movie.cinema.db.OrderDao;
 import com.movie.cinema.db.RoomDao;
@@ -33,11 +34,16 @@ public class SeatPanel extends javax.swing.JPanel {
     MovieDao movieDao = new MovieDao();
     // 放映厅 dao
     RoomDao roomDao = new RoomDao();
+    // 用户信息 dao
+    AccountDao accDao = new AccountDao();
     MainFrame frame;
     public final SeatPanel thisPanel;
     Schedule schedule;
     Movie movie;
+    // 用户选中的位置
     int choosedSeat = -1;
+    // 保存所有的座位信息
+     ArrayList<JButton> btns;  
     /**
      * Creates new form SeatPanel
      */
@@ -58,18 +64,20 @@ public class SeatPanel extends javax.swing.JPanel {
         ImageIcon img = new ImageIcon("imgs/seat.png");
         Image image = img.getImage();
         img.setImage(image.getScaledInstance(40, 30,Image.SCALE_DEFAULT));
+        btns = new ArrayList<JButton>();
         for(int i=0;i<n;i++){
             JButton btn = new JButton("");
             btn.setIcon(img);
             btn.addActionListener(new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    thisPanel.setText(i);
+//                    thisPanel.setText(i);
                 }
             });
             if(orderedSeats.contains(i)){
                 btn.setEnabled(false);
             }
+            btns.add(btn);
             conPanel.add(btn);
         }
     }
@@ -151,12 +159,23 @@ public class SeatPanel extends javax.swing.JPanel {
 
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
         // TODO add your handling code here:
+        if(frame.acc.getBalance() < schedule.getPrice()){
+            BaseDialog.showErr("Account balance is not enough.");
+            return;
+        }
+        if(choosedSeat < 0){
+            BaseDialog.showErr("Select a seat please.");
+            return;
+        }
         Order order = new Order();
         order.setScheduleid(schedule.getId());
         order.setAccountid(frame.acc.getId());
         order.setSeat(choosedSeat);
         order.setStatus(0);  // 0 是没有看 1 是看过了
         orderDao.addOrder(order);
+        frame.acc.setBalance(frame.acc.getBalance() - schedule.getPrice());
+        accDao.updateAccount(frame.acc);
+        btns.get(choosedSeat).setEnabled(false);
         BaseDialog.showInfo("Buy ticket successfully.");
     }//GEN-LAST:event_submitBtnActionPerformed
 

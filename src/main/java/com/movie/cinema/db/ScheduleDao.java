@@ -21,6 +21,17 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
  */
 public class ScheduleDao extends BaseDao{
     /**
+     * 根据ID查找排片记录
+     * @param id
+     * @return 
+     */
+    public Schedule getSchedule(int id){
+        String sql = "select * from schedules where id=?";
+        ResultSetHandler<Schedule> h = new BeanHandler<Schedule>(Schedule.class);
+        Schedule res = (Schedule)query(sql, h, id);
+        return res;
+    }
+    /**
      * 根据影片ID查询影片的排片信息
      * @param movieid
      * @return 
@@ -29,6 +40,18 @@ public class ScheduleDao extends BaseDao{
         String sql = "select * from schedules where movieid=?";
         ResultSetHandler<List<Schedule>> h = new BeanListHandler<Schedule>(Schedule.class);
         List<Schedule> res = (List)query(sql, h, movieid);
+        return res;
+    }
+    
+    /**
+     * 根据影院ID查询影片的排片信息
+     * @param cinemaid
+     * @return 
+     */
+    public List<Schedule> getCinemaSchedules(int cinemaid){
+        String sql = "select * from schedules where cinemaid=?";
+        ResultSetHandler<List<Schedule>> h = new BeanListHandler<Schedule>(Schedule.class);
+        List<Schedule> res = (List)query(sql, h, cinemaid);
         return res;
     }
     
