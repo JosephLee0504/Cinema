@@ -68,10 +68,11 @@ public class SeatPanel extends javax.swing.JPanel {
         for(int i=0;i<n;i++){
             JButton btn = new JButton("");
             btn.setIcon(img);
+            final int a = i;
             btn.addActionListener(new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    thisPanel.setText(i);
+                    thisPanel.setText(a);
                 }
             });
             if(orderedSeats.contains(i)){
