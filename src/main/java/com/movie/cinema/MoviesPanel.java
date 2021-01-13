@@ -7,12 +7,8 @@ package com.movie.cinema;
 
 import com.movie.cinema.db.MovieDao;
 import com.movie.cinema.model.Movie;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.util.List;
-import javax.swing.JButton;
-import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 
 /**
@@ -35,10 +31,9 @@ public class MoviesPanel extends javax.swing.JPanel {
         
         jPanel1.setLayout(new GridLayout((movies.size()+3)/4, 4));
         
-        for(Movie movie : movies){
-            MovieGridPanel grid = new MovieGridPanel(movie);
+        movies.stream().map(movie -> new MovieGridPanel(movie)).forEachOrdered(grid -> {
             jPanel1.add(grid);
-        }
+        });
         
 //        jPanel1.setMaximumSize(new Dimension(800, 33333));
         jScrollPane1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER); 

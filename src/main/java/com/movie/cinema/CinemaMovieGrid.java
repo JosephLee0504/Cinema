@@ -17,6 +17,8 @@ public class CinemaMovieGrid extends javax.swing.JPanel {
 
     /**
      * Creates new form CinemaMovieGrid
+     * @param schedule
+     * @param movie
      */
     public CinemaMovieGrid(Schedule schedule, Movie movie) {
         initComponents();

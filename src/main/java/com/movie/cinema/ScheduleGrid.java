@@ -20,6 +20,9 @@ public class ScheduleGrid extends javax.swing.JPanel {
     Schedule schedule;
     /**
      * Creates new form ScheduleGrid
+     * @param schedule
+     * @param movie
+     * @param cinema
      */
     public ScheduleGrid(Schedule schedule, Movie movie, Cinema cinema) {
         initComponents();

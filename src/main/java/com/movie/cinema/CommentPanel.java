@@ -34,6 +34,7 @@ public class CommentPanel extends javax.swing.JPanel {
     Movie movie;
     /**
      * Creates new form CommentPanel
+     * @param movie
      */
     public CommentPanel(Movie movie) {
         this.frame = MainFrame.getInstance();
@@ -42,23 +43,22 @@ public class CommentPanel extends javax.swing.JPanel {
         conPanel.setLayout(new GridLayout());
         updateData();
     }
-    public void updateData(){
+    private void updateData(){
         
         List<Comment> list = commentDao.getComments(movie.getId());
         List<Integer> accIds = new ArrayList<>();
-        for(Comment c : list){
+        list.forEach(c -> {
             accIds.add(c.getAccountid());
-        }
+        });
         Map<Integer, Account> accs = accDao.getAccountsMap(accIds);
         
         conPanel.setVisible(false);
         conPanel.removeAll();
         
         conPanel.setLayout(new GridLayout(list.size(), 1));
-        for(Comment comment : list){
-            CommentGrid grid = new CommentGrid(comment, accs.get(comment.getAccountid()));
+        list.stream().map(comment -> new CommentGrid(comment, accs.get(comment.getAccountid()))).forEachOrdered(grid -> {
             conPanel.add(grid);
-        }
+        });
         conPanel.setVisible(true);
     }
 

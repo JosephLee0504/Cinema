@@ -18,6 +18,7 @@ public class MovieInfoPanel extends javax.swing.JPanel {
     CommentPanel commentPanel;
     /**
      * Creates new form MovieInfoPanel
+     * @param movie
      */
     public MovieInfoPanel(Movie movie) {
         initComponents();

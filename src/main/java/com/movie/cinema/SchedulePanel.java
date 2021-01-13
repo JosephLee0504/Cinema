@@ -10,7 +10,6 @@ import com.movie.cinema.db.ScheduleDao;
 import com.movie.cinema.model.Cinema;
 import com.movie.cinema.model.Movie;
 import com.movie.cinema.model.Schedule;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,21 +26,21 @@ public class SchedulePanel extends javax.swing.JPanel {
 
     /**
      * Creates new form SchedulePanel
+     * @param movie
      */
     public SchedulePanel(Movie movie) {
         initComponents();
         List<Schedule> list = scheduleDao.getSchedules(movie.getId());
         List<Integer> cinemaIds = new ArrayList<>();
-        for(Schedule schedule : list){
+        list.forEach(schedule -> {
             cinemaIds.add(schedule.getCinemaid());
-        }
+        });
         System.out.println("movie id:" + movie.getId() + " schedule list size:" + list.size());
         conPanel.setLayout(new GridLayout(list.size(), 1));
         Map<Integer, Cinema> cinemas = cinemaDao.getCinemasMap(cinemaIds);
-        for(Schedule schedule : list){
-            ScheduleGrid grid = new ScheduleGrid(schedule,movie, cinemas.get(schedule.getCinemaid()));
+        list.stream().map(schedule -> new ScheduleGrid(schedule,movie, cinemas.get(schedule.getCinemaid()))).forEachOrdered(grid -> {
             conPanel.add(grid);
-        }
+        });
     }
 
     /**

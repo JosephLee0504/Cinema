@@ -30,6 +30,7 @@ public class CinemaMoviesPanel extends javax.swing.JPanel {
     Cinema cinema;
     /**
      * Creates new form CinemaMoviesPanel
+     * @param cinema
      */
     public CinemaMoviesPanel(Cinema cinema) {
         this.cinema = cinema;
@@ -39,19 +40,21 @@ public class CinemaMoviesPanel extends javax.swing.JPanel {
         updateData();
     }
     
-    public void updateData(){
+    private void updateData(){
         List<Schedule> list = scheduleDao.getCinemaSchedules(cinema.getId());
         conPanel.setLayout(new GridLayout(list.size(), 1));
         List<Integer> movieids = new ArrayList<>();
-        for(Schedule sch : list){
+        list.forEach((Schedule sch) -> {
             movieids.add(sch.getMovieid());
-        }
+        });
         Map<Integer, Movie> movies = movieDao.getMoviesMap(movieids);
-        for(Schedule sch : list){
+        list.stream().map(sch -> {
             Movie movie = movies.get(sch.getMovieid());
             CinemaMovieGrid grid = new CinemaMovieGrid(sch, movie);
+            return grid;
+        }).forEachOrdered(grid -> {
             conPanel.add(grid);
-        }
+        });
     }
 
     /**

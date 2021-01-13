@@ -31,6 +31,10 @@ public class OrderGrid extends javax.swing.JPanel {
     
     /**
      * Creates new form OrderGrid
+     * @param order
+     * @param schedule
+     * @param cinema
+     * @param movie
      */
     public OrderGrid(Order order, Schedule schedule, Cinema cinema, Movie movie) {
         frame = MainFrame.getInstance();

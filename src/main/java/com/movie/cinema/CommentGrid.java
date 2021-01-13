@@ -16,6 +16,8 @@ public class CommentGrid extends javax.swing.JPanel {
 
     /**
      * Creates new form CommentGrid
+     * @param comment
+     * @param acc
      */
     public CommentGrid(Comment comment, Account acc) {
         initComponents();

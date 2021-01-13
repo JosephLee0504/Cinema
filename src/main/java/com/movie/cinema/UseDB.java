@@ -17,16 +17,15 @@ import java.sql.Statement;
  */
 public class UseDB {
 
-    private static String driver = "org.apache.derby.jdbc.EmbeddedDriver";
-    private static String protocol = "jdbc:derby:";
+    private static final String driver = "org.apache.derby.jdbc.EmbeddedDriver";
+    private static final String protocol = "jdbc:derby:";
     String dbName = "database\\cinema\\";
 
     static void loadDriver() {
         try {
             Class.forName(driver).newInstance();
             System.out.println("Loaded the appropriate driver");
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
         }
     }
 
@@ -40,7 +39,6 @@ public class UseDB {
             conn = DriverManager.getConnection(protocol + dbName);
 //                    + ";create=true");
         } catch (SQLException e) {
-            e.printStackTrace();
         }
 
         System.out.println("Connected to and created database " + dbName);
@@ -55,7 +53,6 @@ public class UseDB {
                 System.out.println(rs.getString(2));
             }
         } catch (SQLException e1) {
-            e1.printStackTrace();
         }
         try {
             conn.close();
@@ -64,14 +61,13 @@ public class UseDB {
             s = null;
             rs.close();
             rs = null;
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
         }
     }
 
     public static void main(String[] args) {
         UseDB t = new UseDB();
-        t.loadDriver();
+        UseDB.loadDriver();
         t.doIt();
     }
 }

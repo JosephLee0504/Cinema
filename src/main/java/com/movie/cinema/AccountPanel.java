@@ -15,6 +15,7 @@ public class AccountPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form AccountPanel
+     * @param acc
      */
     public AccountPanel(Account acc) {
         initComponents();

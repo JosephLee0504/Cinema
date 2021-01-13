@@ -10,7 +10,6 @@ import com.movie.cinema.db.CinemaDao;
 import com.movie.cinema.db.MovieDao;
 import com.movie.cinema.db.OrderDao;
 import com.movie.cinema.db.ScheduleDao;
-import com.movie.cinema.model.Account;
 import com.movie.cinema.model.Cinema;
 import com.movie.cinema.model.Movie;
 import com.movie.cinema.model.Order;

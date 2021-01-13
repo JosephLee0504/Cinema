@@ -6,9 +6,7 @@
 package com.movie.cinema;
 
 import com.movie.cinema.model.Movie;
-import java.awt.Image;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 
 /**
  *

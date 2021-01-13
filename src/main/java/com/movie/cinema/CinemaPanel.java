@@ -31,13 +31,12 @@ public class CinemaPanel extends javax.swing.JPanel {
     /**
      * 更新电影院数据
      */
-    public void updateData(){
+    private void updateData(){
         List<Cinema> list = cinemaDao.getCinemas();
         conPanel.setLayout(new GridLayout(list.size(), 1));
-        for(Cinema cinema : list){
-            CinemaGrid grid = new CinemaGrid(cinema);
+        list.stream().map(cinema -> new CinemaGrid(cinema)).forEachOrdered(grid -> {
             conPanel.add(grid);
-        }
+        });
     }
 
     /**

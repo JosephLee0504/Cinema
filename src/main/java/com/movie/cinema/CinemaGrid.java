@@ -18,6 +18,7 @@ public class CinemaGrid extends javax.swing.JPanel {
 
     /**
      * Creates new form CinemaGrid
+     * @param cinema
      */
     public CinemaGrid(Cinema cinema) {
         frame = MainFrame.getInstance();

@@ -46,6 +46,7 @@ public class SeatPanel extends javax.swing.JPanel {
      ArrayList<JButton> btns;  
     /**
      * Creates new form SeatPanel
+     * @param schedule
      */
     public SeatPanel(Schedule schedule) {
         frame = MainFrame.getInstance();
@@ -55,25 +56,22 @@ public class SeatPanel extends javax.swing.JPanel {
         movie = movieDao.getMovie(schedule.getMovieid());
         List<Order> list = orderDao.getOrders(schedule.getId());
         List<Integer> orderedSeats = new ArrayList<>();
-        for(Order order : list){
+        list.forEach(order -> {
             orderedSeats.add(order.getSeat());
-        }
+        });
         Room room = roomDao.getRoomById(schedule.getRoomid());
         int n = room == null ? 100 : room.getSeatcount();
         conPanel.setLayout(new GridLayout((n+9)/10, 10));
         ImageIcon img = new ImageIcon("imgs/seat.png");
         Image image = img.getImage();
         img.setImage(image.getScaledInstance(40, 30,Image.SCALE_DEFAULT));
-        btns = new ArrayList<JButton>();
+        btns = new ArrayList<>();
         for(int i=0;i<n;i++){
             JButton btn = new JButton("");
             btn.setIcon(img);
             final int a = i;
-            btn.addActionListener(new ActionListener(){
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    thisPanel.setText(a);
-                }
+            btn.addActionListener((ActionEvent e) -> {
+                thisPanel.setText(a);
             });
             if(orderedSeats.contains(i)){
                 btn.setEnabled(false);

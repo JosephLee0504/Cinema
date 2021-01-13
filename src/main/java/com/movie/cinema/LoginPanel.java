@@ -19,6 +19,7 @@ public class LoginPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form LoginPanel
+     * @param frame
      */
     public LoginPanel(MainFrame frame) {
         this.frame = frame;
