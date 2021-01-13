@@ -5,7 +5,6 @@
  */
 package com.movie.cinema.db;
 
-import com.movie.cinema.model.Account;
 import com.movie.cinema.model.Movie;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertTrue;

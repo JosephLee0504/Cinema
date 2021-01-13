@@ -5,11 +5,9 @@
  */
 package com.movie.cinema.db;
 
-import com.movie.cinema.model.Account;
 import com.movie.cinema.model.Cinema;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
