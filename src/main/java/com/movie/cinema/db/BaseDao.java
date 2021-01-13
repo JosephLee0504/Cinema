@@ -6,6 +6,7 @@
 package com.movie.cinema.db;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
@@ -13,6 +14,7 @@ import org.apache.commons.dbutils.ResultSetHandler;
 /**
  * 数据库操作基础类
  * @author zhch
+ * @param <T>
  */
 public  class BaseDao<T> {
     public QueryRunner runner = new QueryRunner();
@@ -20,7 +22,6 @@ public  class BaseDao<T> {
     /**
      * 包装 QueryRunner.query() 方法，保留处理错误情况
      * @param <T>
-     * @param conn
      * @param sql
      * @param rsh
      * @return 
@@ -30,8 +31,7 @@ public  class BaseDao<T> {
         try{
             T res = runner.query(conn, sql, rsh);
             return res;
-        }catch(Exception e){
-            e.printStackTrace();
+        }catch(SQLException e){
         }finally{
             DerbyUtil.close(conn);
         }
@@ -41,7 +41,6 @@ public  class BaseDao<T> {
     /**
      * 包装 QueryRunner.query() 方法，保留处理错误情况
      * @param <T>
-     * @param conn
      * @param sql
      * @param rsh
      * @param params
@@ -52,8 +51,7 @@ public  class BaseDao<T> {
         try{
             T res = runner.query(conn, sql, rsh, params);
             return res;
-        }catch(Exception e){
-            e.printStackTrace();
+        }catch(SQLException e){
         }finally{
             DerbyUtil.close(conn);
         }
@@ -61,7 +59,6 @@ public  class BaseDao<T> {
     }
     /**
      * 包装 QueryRunner.update() 方法，保留处理错误情况
-     * @param conn
      * @param sql
      * @return 
      */
@@ -70,8 +67,7 @@ public  class BaseDao<T> {
         try{
             int res = runner.update(conn, sql);
             return res;
-        }catch(Exception e){
-            e.printStackTrace();
+        }catch(SQLException e){
         }finally{
             DerbyUtil.close(conn);
         }
@@ -80,7 +76,6 @@ public  class BaseDao<T> {
     
     /**
      * 包装 QueryRunner.update() 方法，保留处理错误情况
-     * @param conn
      * @param sql
      * @param params
      * @return 
@@ -90,8 +85,7 @@ public  class BaseDao<T> {
         try{
             int res = runner.update(conn, sql, params);
             return res;
-        }catch(Exception e){
-            e.printStackTrace();
+        }catch(SQLException e){
         }finally{
             DerbyUtil.close(conn);
         }
@@ -116,6 +110,4 @@ public  class BaseDao<T> {
         res += ")";
         return res;
     }
-    
-    
 }

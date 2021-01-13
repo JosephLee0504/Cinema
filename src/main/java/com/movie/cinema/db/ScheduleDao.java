@@ -5,7 +5,6 @@
  */
 package com.movie.cinema.db;
 
-import com.movie.cinema.model.Account;
 import com.movie.cinema.model.Schedule;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,7 +26,8 @@ public class ScheduleDao extends BaseDao{
      */
     public Schedule getSchedule(int id){
         String sql = "select * from schedules where id=?";
-        ResultSetHandler<Schedule> h = new BeanHandler<Schedule>(Schedule.class);
+        ResultSetHandler<Schedule> h;
+        h = new BeanHandler<>(Schedule.class);
         Schedule res = (Schedule)query(sql, h, id);
         return res;
     }
@@ -38,7 +38,7 @@ public class ScheduleDao extends BaseDao{
      */
     public List<Schedule> getSchedules(int movieid){
         String sql = "select * from schedules where movieid=?";
-        ResultSetHandler<List<Schedule>> h = new BeanListHandler<Schedule>(Schedule.class);
+        ResultSetHandler<List<Schedule>> h = new BeanListHandler<>(Schedule.class);
         List<Schedule> res = (List)query(sql, h, movieid);
         return res;
     }
@@ -50,7 +50,7 @@ public class ScheduleDao extends BaseDao{
      */
     public List<Schedule> getCinemaSchedules(int cinemaid){
         String sql = "select * from schedules where cinemaid=?";
-        ResultSetHandler<List<Schedule>> h = new BeanListHandler<Schedule>(Schedule.class);
+        ResultSetHandler<List<Schedule>> h = new BeanListHandler<>(Schedule.class);
         List<Schedule> res = (List)query(sql, h, cinemaid);
         return res;
     }
@@ -63,10 +63,11 @@ public class ScheduleDao extends BaseDao{
      */
     public Map<Integer, Schedule> getSchedulesMap(List<Integer> ids){
         List<Schedule> list = getSchedules(ids);
-        Map<Integer, Schedule> map = new HashMap<>();
-        for(Schedule c : list){
+        Map<Integer, Schedule> map;
+        map = new HashMap<>();
+        list.forEach(c -> {
             map.put(c.getId(), c);
-        }
+        });
         return map;
     }
     /**
@@ -76,10 +77,10 @@ public class ScheduleDao extends BaseDao{
      */
     public List<Schedule> getSchedules(List<Integer> ids){
         if(ids==null || ids.size() == 0){
-            return new ArrayList<Schedule>();
+            return new ArrayList<>();
         }
         String sql = "select * from schedules where id in " + listToString(ids);
-        ResultSetHandler<List<Schedule>> h = new BeanListHandler<Schedule>(Schedule.class);
+        ResultSetHandler<List<Schedule>> h = new BeanListHandler<>(Schedule.class);
         List<Schedule> res = (List)query(sql, h);
         return res;
     }

@@ -22,7 +22,7 @@ public class OrderDao extends BaseDao{
      */
     public List<Order> getOrders(int scheduleid){
         String sql = "select * from orders where scheduleid=?";
-        ResultSetHandler<List<Order>> h = new BeanListHandler<Order>(Order.class);
+        ResultSetHandler<List<Order>> h = new BeanListHandler<>(Order.class);
         List<Order> res = (List)query(sql, h, scheduleid);
         return res;
     }
@@ -63,7 +63,7 @@ public class OrderDao extends BaseDao{
      */
     public List<Order> getAccountOrders(int accid){
         String sql = "select * from orders where accountid=?";
-        ResultSetHandler<List<Order>> h = new BeanListHandler<Order>(Order.class);
+        ResultSetHandler<List<Order>> h = new BeanListHandler<>(Order.class);
         List<Order> res = (List)query(sql, h, accid);
         return res;
     }
@@ -80,7 +80,7 @@ public class OrderDao extends BaseDao{
     }
     /** 
      * 插入一条数据
-     * @param acc
+     * @param o
      * @return 
      */
     public int insertData(Order o){

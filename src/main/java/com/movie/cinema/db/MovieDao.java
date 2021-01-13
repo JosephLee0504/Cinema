@@ -5,7 +5,6 @@
  */
 package com.movie.cinema.db;
 
-import com.movie.cinema.model.Cinema;
 import com.movie.cinema.model.Movie;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +27,7 @@ public class MovieDao extends BaseDao{
      */
     public Movie getMovie(int id){
         String sql = "select * from movies where id=?";
-        ResultSetHandler<Movie> h = new BeanHandler<Movie>(Movie.class);
+        ResultSetHandler<Movie> h = new BeanHandler<>(Movie.class);
         Movie res = (Movie)query(sql, h, id);
         return res;
     }
@@ -38,7 +37,7 @@ public class MovieDao extends BaseDao{
      */
     public List<Movie> getMovies(){
         String sql = "select * from movies";
-        ResultSetHandler<List<Movie>> h = new BeanListHandler<Movie>(Movie.class);
+        ResultSetHandler<List<Movie>> h = new BeanListHandler<>(Movie.class);
         List<Movie> res = (List)query(sql, h);
         return res;
     }
@@ -51,9 +50,9 @@ public class MovieDao extends BaseDao{
     public Map<Integer, Movie> getMoviesMap(List<Integer> ids){
         List<Movie> list = getMovies(ids);
         Map<Integer, Movie> map = new HashMap<>();
-        for(Movie c : list){
+        list.forEach(c -> {
             map.put(c.getId(), c);
-        }
+        });
         return map;
     }
     /**
@@ -63,10 +62,10 @@ public class MovieDao extends BaseDao{
      */
     public List<Movie> getMovies(List<Integer> ids){
         if(ids==null || ids.size() == 0){
-            return new ArrayList<Movie>();
+            return new ArrayList<>();
         }
         String sql = "select * from movies where id in " + listToString(ids);
-        ResultSetHandler<List<Movie>> h = new BeanListHandler<Movie>(Movie.class);
+        ResultSetHandler<List<Movie>> h = new BeanListHandler<>(Movie.class);
         List<Movie> res = (List)query(sql, h);
         return res;
     }
@@ -83,7 +82,7 @@ public class MovieDao extends BaseDao{
     }
     /** 
      * 插入一条数据
-     * @param acc
+     * @param o
      * @return 
      */
     public int insertData(Movie o){

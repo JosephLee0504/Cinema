@@ -32,7 +32,7 @@ public class CommentDao extends BaseDao{
      */
     public List<Comment> getComments(int movieid){
         String sql = "select * from comments where movieid=?";
-        ResultSetHandler<List<Comment>> h = new BeanListHandler<Comment>(Comment.class);
+        ResultSetHandler<List<Comment>> h = new BeanListHandler<>(Comment.class);
         List<Comment> res = (List)query(sql, h, movieid);
         return res;
     }

@@ -7,17 +7,15 @@ package com.movie.cinema.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  *
  * @author zhch
  */
 public class DerbyUtil {
-    private static String driver = "org.apache.derby.jdbc.EmbeddedDriver";
-    private static String protocol = "jdbc:derby:";
+    private static final String driver = "org.apache.derby.jdbc.EmbeddedDriver";
+    private static final String protocol = "jdbc:derby:";
     static String dbName = "database\\cinema\\";
     
     public static boolean test = false;
@@ -33,8 +31,7 @@ public class DerbyUtil {
         try {
             Class.forName(driver).newInstance();
             System.out.println("Loaded the appropriate driver");
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
         }
     }
 
@@ -58,9 +55,7 @@ public class DerbyUtil {
 
         try {
             conn = DriverManager.getConnection(protocol + dbName);
-//                    + ";create=true");
         } catch (SQLException e) {
-            e.printStackTrace();
         }
         return conn;
     }
@@ -73,9 +68,7 @@ public class DerbyUtil {
 
         try {
             conn = DriverManager.getConnection(protocol + "database\\cinematest\\");
-//                    + ";create=true");
         } catch (SQLException e) {
-            e.printStackTrace();
         }
         return conn;
     }
@@ -87,12 +80,7 @@ public class DerbyUtil {
         try {
             conn.close();
             conn = null;
-//            s.close();
-//            s = null;
-//            rs.close();
-//            rs = null;
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
         }
     }
 }

@@ -5,7 +5,6 @@
  */
 package com.movie.cinema.db;
 
-import com.movie.cinema.model.Account;
 import com.movie.cinema.model.Cinema;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,7 +24,7 @@ public class CinemaDao extends BaseDao{
      */
     public List<Cinema> getCinemas(){
         String sql = "select * from cinemas";
-        ResultSetHandler<List<Cinema>> h = new BeanListHandler<Cinema>(Cinema.class);
+        ResultSetHandler<List<Cinema>> h = new BeanListHandler<>(Cinema.class);
         List<Cinema> res = (List)query(sql, h);
         return res;
     } 
@@ -37,9 +36,9 @@ public class CinemaDao extends BaseDao{
     public Map<Integer, Cinema> getCinemasMap(List<Integer> ids){
         List<Cinema> list = getCinemas(ids);
         Map<Integer, Cinema> map = new HashMap<>();
-        for(Cinema c : list){
+        list.forEach(c -> {
             map.put(c.getId(), c);
-        }
+        });
         return map;
     }
     /**
@@ -49,10 +48,10 @@ public class CinemaDao extends BaseDao{
      */
     public List<Cinema> getCinemas(List<Integer> ids){
         if(ids==null || ids.size() == 0){
-            return new ArrayList<Cinema>();
+            return new ArrayList<>();
         }
         String sql = "select * from cinemas where id in " + listToString(ids);
-        ResultSetHandler<List<Cinema>> h = new BeanListHandler<Cinema>(Cinema.class);
+        ResultSetHandler<List<Cinema>> h = new BeanListHandler<>(Cinema.class);
         List<Cinema> res = (List)query(sql, h);
         return res;
     }
@@ -69,7 +68,7 @@ public class CinemaDao extends BaseDao{
     }
     /** 
      * 插入一条数据
-     * @param acc
+     * @param o
      * @return 
      */
     public int insertData(Cinema o){

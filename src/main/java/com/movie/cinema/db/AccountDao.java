@@ -6,15 +6,10 @@
 package com.movie.cinema.db;
 
 import com.movie.cinema.model.Account;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
@@ -44,19 +39,18 @@ public class AccountDao extends BaseDao{
      */
     public Account getAccount(String username, String password){
         String sql = "select * from accounts where username=? and password=?";
-        ResultSetHandler<Account> h = new BeanHandler<Account>(Account.class);
+        ResultSetHandler<Account> h = new BeanHandler<>(Account.class);
         Account res = (Account)query(sql, h, username, password);
         return res;
     }
     /**
      * 根据用户名查找用户
      * @param username
-     * @param password
      * @return 
      */
     public Account getAccount(String username){
         String sql = "select * from accounts where username=?";
-        ResultSetHandler<Account> h = new BeanHandler<Account>(Account.class);
+        ResultSetHandler<Account> h = new BeanHandler<>(Account.class);
         Account res = (Account)query(sql, h, username);
         return res;
     }
@@ -69,9 +63,9 @@ public class AccountDao extends BaseDao{
     public Map<Integer, Account> getAccountsMap(List<Integer> ids){
         List<Account> list = getAccounts(ids);
         Map<Integer, Account> map = new HashMap<>();
-        for(Account c : list){
+        list.forEach(c -> {
             map.put(c.getId(), c);
-        }
+        });
         return map;
     }
     /**
@@ -80,11 +74,12 @@ public class AccountDao extends BaseDao{
      * @return 
      */
     public List<Account> getAccounts(List<Integer> ids){
-        if(ids==null || ids.size() == 0){
-            return new ArrayList<Account>();
+        if(ids==null || ids.isEmpty()){
+            return new ArrayList<>();
         }
         String sql = "select * from accounts where id in " + listToString(ids);
-        ResultSetHandler<List<Account>> h = new BeanListHandler<Account>(Account.class);
+        ResultSetHandler<List<Account>> h;
+        h = new BeanListHandler<>(Account.class);
         List<Account> res = (List)query(sql, h);
         return res;
     }
