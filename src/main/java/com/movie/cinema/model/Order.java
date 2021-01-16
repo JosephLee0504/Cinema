@@ -2,6 +2,10 @@ package com.movie.cinema.model;
 
 import java.io.Serializable;
 
+/**
+ *
+ * @author Jiacheng Lv
+ */
 public class Order implements Serializable {
     private Integer id;
 

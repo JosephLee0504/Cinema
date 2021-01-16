@@ -2,6 +2,10 @@ package com.movie.cinema.model;
 
 import java.io.Serializable;
 
+/**
+ *
+ * @author Shijie Ma
+ */
 public class Movie implements Serializable {
     private Integer id;
 
