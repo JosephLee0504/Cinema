@@ -11,7 +11,7 @@ import com.movie.cinema.model.Schedule;
 
 /**
  *
- * @author zhch
+ * @author Shijie Ma
  */
 public class ScheduleGrid extends javax.swing.JPanel {
 

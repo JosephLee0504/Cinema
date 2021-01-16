@@ -13,7 +13,7 @@ import javax.swing.ScrollPaneConstants;
 
 /**
  *
- * @author zhch
+ * @author Hanpeng Jiang
  */
 public class CinemaPanel extends javax.swing.JPanel {
 

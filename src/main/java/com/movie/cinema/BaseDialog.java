@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author zhch
+ * @author Tianyang Li
  */
 public class BaseDialog {
      public static void showErr(String msg){

@@ -13,7 +13,7 @@ import java.sql.Statement;
 
 /**
  *
- * @author zhch
+ * @author Tianyang Li
  */
 public class UseDB {
 

@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
 
 /**
  *
- * @author zhch
+ * @author Hanpeng Jiang
  */
 public class CinemaMovieGrid extends javax.swing.JPanel {
 

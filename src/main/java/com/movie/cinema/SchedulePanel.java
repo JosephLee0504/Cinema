@@ -17,7 +17,7 @@ import java.util.Map;
 
 /**
  *
- * @author zhch
+ * @author Shijie Ma
  */
 public class SchedulePanel extends javax.swing.JPanel {
     

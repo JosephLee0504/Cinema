@@ -10,7 +10,7 @@ import javax.swing.ImageIcon;
 
 /**
  *
- * @author zhch
+ * @author Hanpeng Jiang
  */
 public class MoviePanel extends javax.swing.JPanel {
 

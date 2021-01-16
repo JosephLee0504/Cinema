@@ -24,7 +24,7 @@ import javax.swing.JButton;
 
 /**
  *
- * @author zhch
+ * @author Jiacheng Lv
  */
 public class SeatPanel extends javax.swing.JPanel {
     

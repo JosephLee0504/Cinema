@@ -7,7 +7,7 @@ package com.movie.cinema;
 
 /**
  * 显示电影和电影院列表信息的面板
- * @author zhch
+ * @author Tianyang Li
  */
 public class ShowPanel extends javax.swing.JPanel {
     

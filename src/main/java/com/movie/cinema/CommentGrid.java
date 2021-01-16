@@ -10,7 +10,7 @@ import com.movie.cinema.model.Comment;
 
 /**
  *
- * @author zhch
+ * @author Shijie Ma
  */
 public class CommentGrid extends javax.swing.JPanel {
 

@@ -10,7 +10,7 @@ import com.movie.cinema.model.Account;
 
 /**
  *
- * @author zhch
+ * @author Tianyang Li
  */
 public class LoginPanel extends javax.swing.JPanel {
     

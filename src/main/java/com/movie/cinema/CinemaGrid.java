@@ -9,7 +9,7 @@ import com.movie.cinema.model.Cinema;
 
 /**
  *
- * @author zhch
+ * @author Hanpeng Jiang
  */
 public class CinemaGrid extends javax.swing.JPanel {
     

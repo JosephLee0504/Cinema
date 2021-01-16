@@ -9,7 +9,7 @@ import com.movie.cinema.model.Movie;
 
 /**
  *
- * @author zhch
+ * @author Shijie Ma
  */
 public class MovieInfoPanel extends javax.swing.JPanel {
 

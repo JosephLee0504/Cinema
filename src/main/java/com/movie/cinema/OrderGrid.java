@@ -15,7 +15,7 @@ import com.movie.cinema.model.Schedule;
 
 /**
  *
- * @author zhch
+ * @author Jiacheng Lv
  */
 public class OrderGrid extends javax.swing.JPanel {
 

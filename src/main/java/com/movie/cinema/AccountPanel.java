@@ -9,7 +9,7 @@ import com.movie.cinema.model.Account;
 
 /**
  *
- * @author zhch
+ * @author Jiacheng Lv
  */
 public class AccountPanel extends javax.swing.JPanel {
 

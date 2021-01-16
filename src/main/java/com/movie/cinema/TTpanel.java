@@ -7,7 +7,7 @@ package com.movie.cinema;
 
 /**
  *
- * @author zhch
+ * @author Tianyang Li
  */
 public class TTpanel extends javax.swing.JPanel {
 

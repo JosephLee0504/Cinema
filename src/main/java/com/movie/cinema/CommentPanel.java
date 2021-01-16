@@ -19,7 +19,7 @@ import java.util.Map;
 
 /**
  *
- * @author zhch
+ * @author Shijie Ma
  */
 public class CommentPanel extends javax.swing.JPanel {
     
