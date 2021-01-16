@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.movie.cinema.db;
+
 import com.movie.cinema.model.Account;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
