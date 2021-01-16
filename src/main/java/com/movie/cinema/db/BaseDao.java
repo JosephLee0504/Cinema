@@ -13,7 +13,7 @@ import org.apache.commons.dbutils.ResultSetHandler;
 
 /**
  * 数据库操作基础类
- * @author zhch
+ * @author Tianyang Li
  * @param <T>
  */
 public  class BaseDao<T> {

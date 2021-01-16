@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 /**
  *
- * @author zhch
+ * @author Tianyang Li
  */
 public class DerbyUtil {
     private static final String driver = "org.apache.derby.jdbc.EmbeddedDriver";

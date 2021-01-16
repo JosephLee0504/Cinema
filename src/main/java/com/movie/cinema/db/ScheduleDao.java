@@ -16,7 +16,7 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 /**
  *
- * @author zhch
+ * @author Shijie Ma
  */
 public class ScheduleDao extends BaseDao{
     /**

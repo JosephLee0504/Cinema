@@ -13,7 +13,7 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 /**
  *
- * @author zhch
+ * @author Jiacheng Lv
  */
 public class RoomDao extends BaseDao{
     /**

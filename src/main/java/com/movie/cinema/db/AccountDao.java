@@ -16,7 +16,7 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 /**
  *
- * @author zhch
+ * @author Tianyang Li
  */
 public class AccountDao extends BaseDao{
     /**

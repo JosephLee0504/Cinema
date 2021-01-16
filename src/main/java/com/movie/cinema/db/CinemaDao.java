@@ -15,7 +15,7 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 /**
  *
- * @author zhch
+ * @author Hanpeng Jiang
  */
 public class CinemaDao extends BaseDao{
     /**
