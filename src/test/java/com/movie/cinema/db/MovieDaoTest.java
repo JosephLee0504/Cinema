@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  *
- * @author zhch
+ * @author Shijie Ma
  */
 public class MovieDaoTest {
     MovieDao dao;
