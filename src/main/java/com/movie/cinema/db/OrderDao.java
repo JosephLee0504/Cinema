@@ -16,7 +16,7 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
  */
 public class OrderDao extends BaseDao{
     /**
-     * 根据排片ID查找所有的订票记录
+     * Find all booking records based on the row ID
      * @param scheduleid
      * @return 
      */
@@ -27,7 +27,7 @@ public class OrderDao extends BaseDao{
         return res;
     }
     /**
-     * 新建一条订票记录
+     * Create a new booking record
      * @param order
      * @return 
      */
@@ -37,7 +37,7 @@ public class OrderDao extends BaseDao{
         return res;
     }
     /**
-     * 更新订票记录状态
+     * Update booking record status
      * @param order
      * @return 
      */
@@ -47,7 +47,7 @@ public class OrderDao extends BaseDao{
         return res;
     }
     /**
-     * 删除指定的订票记录
+     * Deletes the specified booking record
      * @param id
      * @return 
      */
@@ -57,7 +57,7 @@ public class OrderDao extends BaseDao{
         return res;
     }
     /**
-     * 获取用户的订票信息
+     * Gets the user's booking information
      * @param accid
      * @return 
      */
@@ -70,7 +70,7 @@ public class OrderDao extends BaseDao{
     
     
     /**
-     * 删除所有数据
+     * Delete all data
      * @return 
      */
     public int deleteAll(){
@@ -79,7 +79,7 @@ public class OrderDao extends BaseDao{
         return res;
     }
     /** 
-     * 插入一条数据
+     * insert one data
      * @param o
      * @return 
      */

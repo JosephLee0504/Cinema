@@ -20,7 +20,7 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
  */
 public class AccountDao extends BaseDao{
     /**
-     * 添加一个用户帐号
+     * Add a user account
      * @param username
      * @param password
      * @param balance
@@ -32,7 +32,7 @@ public class AccountDao extends BaseDao{
         return res;
     }
     /**
-     * 根据用户名密码查找用户
+     * Find users by username and password
      * @param username
      * @param password
      * @return 
@@ -44,7 +44,7 @@ public class AccountDao extends BaseDao{
         return res;
     }
     /**
-     * 根据用户名查找用户
+     * Find the user by user name
      * @param username
      * @return 
      */
@@ -56,7 +56,7 @@ public class AccountDao extends BaseDao{
     }
     
     /**
-     * 根据id 查询所有的用户信息
+     * Query all user information by ID
      * @param ids
      * @return 
      */
@@ -69,7 +69,7 @@ public class AccountDao extends BaseDao{
         return map;
     }
     /**
-     * 根据id 查询所有的用户信息
+     * Query all user information by ID
      * @param ids
      * @return 
      */
@@ -84,7 +84,7 @@ public class AccountDao extends BaseDao{
         return res;
     }
     /**
-     * 更新账号信息
+     * Update account information
      * @param acc
      * @return 
      */
@@ -94,7 +94,7 @@ public class AccountDao extends BaseDao{
         return res;
     }
     /**
-     * 删除所有数据
+     * Delete all data
      * @return 
      */
     public int deleteAll(){
@@ -103,7 +103,7 @@ public class AccountDao extends BaseDao{
         return res;
     }
     /** 
-     * 插入一条数据
+     * Insert a piece of data
      * @param acc
      * @return 
      */

@@ -17,7 +17,7 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
  */
 public class RoomDao extends BaseDao{
     /**
-     * 根据ID查找放映厅
+     * Find the projection room by ID
      * @param id
      * @return 
      */
@@ -28,7 +28,7 @@ public class RoomDao extends BaseDao{
         return res;
     }
     /**
-     * 查找所有放映厅
+     * Find all the projection room
      * @return 
      */
     public List<Room> getRooms(){
@@ -40,7 +40,7 @@ public class RoomDao extends BaseDao{
     
     
     /**
-     * 删除所有数据
+     * Delete all data
      * @return 
      */
     public int deleteAll(){
@@ -49,7 +49,7 @@ public class RoomDao extends BaseDao{
         return res;
     }
     /** 
-     * 插入一条数据
+     * Insert one data
      * @param o
      * @return 
      */

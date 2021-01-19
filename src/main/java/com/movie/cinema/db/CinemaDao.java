@@ -19,7 +19,7 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
  */
 public class CinemaDao extends BaseDao{
     /**
-     * 获取所有影院信息
+     * Get all cinema information
      * @return 
      */
     public List<Cinema> getCinemas(){
@@ -29,7 +29,7 @@ public class CinemaDao extends BaseDao{
         return res;
     } 
     /**
-     * 根据id 查询所有的影院信息
+     * Query all cinema information by ID
      * @param ids
      * @return 
      */
@@ -42,7 +42,7 @@ public class CinemaDao extends BaseDao{
         return map;
     }
     /**
-     * 根据id 查询所有的影院信息
+     * Query all cinema information by ID
      * @param ids
      * @return 
      */
@@ -58,7 +58,7 @@ public class CinemaDao extends BaseDao{
     
     
     /**
-     * 删除所有数据
+     * Delete all data
      * @return 
      */
     public int deleteAll(){
@@ -67,7 +67,7 @@ public class CinemaDao extends BaseDao{
         return res;
     }
     /** 
-     * 插入一条数据
+     * Insert one data
      * @param o
      * @return 
      */

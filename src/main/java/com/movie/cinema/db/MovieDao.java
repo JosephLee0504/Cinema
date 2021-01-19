@@ -21,7 +21,7 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 public class MovieDao extends BaseDao{
     
     /**
-     * 根据 id 获取电影信息
+     * Get the movie information based on the ID
      * @param id
      * @return 
      */
@@ -32,7 +32,7 @@ public class MovieDao extends BaseDao{
         return res;
     }
     /**
-     * 获取所有的电影信息
+     * Get all the movie information
      * @return 
      */
     public List<Movie> getMovies(){
@@ -43,7 +43,7 @@ public class MovieDao extends BaseDao{
     }
     
     /**
-     * 根据id 查询所有的电影信息
+     * Query all movie information by ID
      * @param ids
      * @return 
      */
@@ -56,7 +56,7 @@ public class MovieDao extends BaseDao{
         return map;
     }
     /**
-     * 根据id 查询所有的电影信息
+     * Query all movie information by ID
      * @param ids
      * @return 
      */
@@ -72,7 +72,7 @@ public class MovieDao extends BaseDao{
     
     
     /**
-     * 删除所有数据
+     * Delete all data
      * @return 
      */
     public int deleteAll(){
@@ -81,7 +81,7 @@ public class MovieDao extends BaseDao{
         return res;
     }
     /** 
-     * 插入一条数据
+     * Insert one data
      * @param o
      * @return 
      */

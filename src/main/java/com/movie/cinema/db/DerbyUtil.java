@@ -25,7 +25,7 @@ public class DerbyUtil {
     }
 
     /**
-     * 加载数据库驱动
+     * Load database driver
      */
     static void loadDriver() {
         try {
@@ -36,7 +36,7 @@ public class DerbyUtil {
     }
 
     /**
-     * 获取数据库连接
+     * Get a database connection
      * @return 
      */
     public static Connection getConn() {
@@ -47,7 +47,7 @@ public class DerbyUtil {
         }
     }
     /**
-     * 获取数据库连接
+     * Get a database connection
      * @return 
      */
     public static Connection getRealConn() {
@@ -60,7 +60,7 @@ public class DerbyUtil {
         return conn;
     }
     /**
-     * 获取测试数据库连接
+     * Gets the test database connection
      * @return 
      */
     public static Connection getTestConn(){
@@ -73,7 +73,7 @@ public class DerbyUtil {
         return conn;
     }
     /**
-     * 关闭数据库连接
+     * Close the database connection
      * @param conn 
      */
     public static void close(Connection conn){

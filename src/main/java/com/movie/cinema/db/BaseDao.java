@@ -12,7 +12,7 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
 
 /**
- * 数据库操作基础类
+ * Base classes for database operations
  * @author Tianyang Li
  * @param <T>
  */
@@ -20,7 +20,7 @@ public  class BaseDao<T> {
     public QueryRunner runner = new QueryRunner();
     
     /**
-     * 包装 QueryRunner.query() 方法，保留处理错误情况
+     * Wrap the queryRunner.query () method, leaving error cases to be handled
      * @param <T>
      * @param sql
      * @param rsh
@@ -39,7 +39,7 @@ public  class BaseDao<T> {
     }
     
     /**
-     * 包装 QueryRunner.query() 方法，保留处理错误情况
+     * Wrap the queryRunner.query () method, leaving error cases to be handled
      * @param <T>
      * @param sql
      * @param rsh
@@ -58,7 +58,7 @@ public  class BaseDao<T> {
         return null;
     }
     /**
-     * 包装 QueryRunner.update() 方法，保留处理错误情况
+     * Wrap the queryRunner.update () method, leaving error cases to be handled
      * @param sql
      * @return 
      */
@@ -75,7 +75,7 @@ public  class BaseDao<T> {
     }
     
     /**
-     * 包装 QueryRunner.update() 方法，保留处理错误情况
+     * Wrap the queryRunner.update () method, leaving error cases to be handled
      * @param sql
      * @param params
      * @return 
@@ -93,7 +93,7 @@ public  class BaseDao<T> {
     }
     
     /**
-     * 把 list 列表换成字符串的形式
+     * Replace the list with a string
      * @param list
      * @return 
      */

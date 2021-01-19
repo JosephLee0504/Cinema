@@ -20,7 +20,7 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
  */
 public class ScheduleDao extends BaseDao{
     /**
-     * 根据ID查找排片记录
+     * Find the movie arrangement record by ID
      * @param id
      * @return 
      */
@@ -32,7 +32,7 @@ public class ScheduleDao extends BaseDao{
         return res;
     }
     /**
-     * 根据影片ID查询影片的排片信息
+     * Query the movie arrangement information according to the movie ID
      * @param movieid
      * @return 
      */
@@ -44,7 +44,7 @@ public class ScheduleDao extends BaseDao{
     }
     
     /**
-     * 根据影院ID查询影片的排片信息
+     * Query the movie arrangement information according to the movie ID
      * @param cinemaid
      * @return 
      */
@@ -57,7 +57,7 @@ public class ScheduleDao extends BaseDao{
     
     
     /**
-     * 根据id 查询所有的排片信息
+     * Query all the scheduling information by ID
      * @param ids
      * @return 
      */
@@ -71,7 +71,7 @@ public class ScheduleDao extends BaseDao{
         return map;
     }
     /**
-     * 根据id 查询所有的排片信息
+     * Query all the scheduling information by ID
      * @param ids
      * @return 
      */

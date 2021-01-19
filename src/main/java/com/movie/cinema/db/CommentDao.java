@@ -16,7 +16,7 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
  */
 public class CommentDao extends BaseDao{
     /**
-     * 添加一条评论
+     * Add a comment
      * @param order
      * @return 
      */
@@ -26,7 +26,7 @@ public class CommentDao extends BaseDao{
         return res;
     }
     /**
-     * 根据 movieid 查看评论
+     * View reviews based on MovieID
      * @param movieid
      * @return 
      */
