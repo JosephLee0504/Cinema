@@ -8,8 +8,6 @@ package com.movie.cinema;
 import com.movie.cinema.db.AccountDao;
 import com.movie.cinema.model.Account;
 import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Container;
 import javax.swing.Box;
 import javax.swing.JComponent;
 
