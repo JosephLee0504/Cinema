@@ -31,7 +31,7 @@ public class MovieGridPanel extends javax.swing.JPanel {
         nameL.setText(movie.getName());
         
         ImageIcon img = new ImageIcon("imgs/" + movie.getImage());
-        imageL.setIcon(img);  // 用 JLabel 来显示图片
+        imageL.setIcon(img); 
     }
 
     /**

@@ -26,9 +26,9 @@ public class CommentPanel extends javax.swing.JPanel {
     MainFrame frame;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:ss:mm");
 
-    // 评论数据 dao
+    // comment data dao
     CommentDao commentDao = new CommentDao();
-    // 用户数据 dao
+    // user data dao
     AccountDao accDao = new AccountDao();
     
     Movie movie;

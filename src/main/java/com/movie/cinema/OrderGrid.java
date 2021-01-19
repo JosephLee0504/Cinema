@@ -20,13 +20,13 @@ import com.movie.cinema.model.Schedule;
 public class OrderGrid extends javax.swing.JPanel {
 
     MainFrame frame;
-    // 订票数据 dao
+    // Booking data dao
     OrderDao orderDao = new OrderDao();
-    // 排片记录 dao
+    // Film Arrangement Record dao
     ScheduleDao scheduleDao = new ScheduleDao();
-    // 用户信息 dao
+    // user information dao
     AccountDao accDao = new AccountDao();
-    // 订票信息
+    // Booking information
     Order order;
     
     /**

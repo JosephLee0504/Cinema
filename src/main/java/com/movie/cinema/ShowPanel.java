@@ -6,7 +6,7 @@
 package com.movie.cinema;
 
 /**
- * 显示电影和电影院列表信息的面板
+ * A panel that displays information about movies and movie theater listings
  * @author Tianyang Li
  */
 public class ShowPanel extends javax.swing.JPanel {

@@ -26,15 +26,15 @@ import java.util.Map;
 public class OrdersPanel extends javax.swing.JPanel {
     
     MainFrame frame;
-    // 订票信息 dao
+    // Booking information dao
     OrderDao orderDao = new OrderDao();
-    // 排片信息 dao
+    // Movie Arrangement dao
     ScheduleDao scheduleDao = new ScheduleDao();
-    // 用户信息 dao
+    // User Information dao
     AccountDao accDao = new AccountDao();
-    // 影院信息 dao
+    // Cinema Information dao
     CinemaDao cinemaDao = new CinemaDao();
-    // 电影信息 dao
+    // Cinema Information dao
     MovieDao movieDao = new MovieDao();
 
     /**

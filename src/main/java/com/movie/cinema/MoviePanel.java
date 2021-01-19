@@ -22,13 +22,13 @@ public class MoviePanel extends javax.swing.JPanel {
     }
     
     /**
-     * 初始化电影介绍界面
+     * Initialize the movie introduction screen
      * @param movie 
      */
     public MoviePanel(Movie movie) {
         initComponents();
         ImageIcon img = new ImageIcon("imgs/" + movie.getImage());
-        imageL.setIcon(img);  // 用 JLabel 来显示图片
+        imageL.setIcon(img); 
         descL.setText(movie.getMdesc());
         publishL.setText(movie.getPublishtime());
         timeL.setText(movie.getMtime() + " minutes");

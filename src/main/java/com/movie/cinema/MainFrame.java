@@ -19,12 +19,12 @@ import javax.swing.JComponent;
  */
 public class MainFrame extends javax.swing.JFrame {
     
-    LoginPanel loginPanel; // 登录面板
+    LoginPanel loginPanel; // login panel
     Box verticalBox;
     Box horizontalBox;
      
-    ShowPanel showPanel; // 电影信息列表
-    Account acc; // 当前登录用户
+    ShowPanel showPanel; // Movie Information List
+    Account acc; // Current Login User
     
     AccountDao accDao = new AccountDao();
     
@@ -43,19 +43,15 @@ public class MainFrame extends javax.swing.JFrame {
         verticalBox = Box.createVerticalBox();
         horizontalBox = Box.createHorizontalBox();
         initComponents();
-        setLocationRelativeTo(null);//窗体居中显示
+        setLocationRelativeTo(null);
         
         mainPanel.setLayout(new BorderLayout());
         
         changePanel("login");
-//        changePanel("show");
-        
-//        acc = accDao.getAccount("a", "a");
-//        setAccount(acc);
     }
     
     /**
-     * 设置登录用户信息
+     * Set login user information
      * @param acc 
      */
     public void setAccount(Account acc){
@@ -74,7 +70,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
     
     /**
-     * 切换不同的界面
+     * Switch between different interfaces
      * @param name 
      */
     public void changePanel(String name){
@@ -216,7 +212,7 @@ public class MainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    // 用户退出登录
+    // User logs out
     private void logoutMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutMenuActionPerformed
         // TODO add your handling code here:
         changePanel("login");

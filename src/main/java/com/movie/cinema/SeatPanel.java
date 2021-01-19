@@ -16,7 +16,6 @@ import com.movie.cinema.model.Schedule;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
@@ -28,21 +27,21 @@ import javax.swing.JButton;
  */
 public class SeatPanel extends javax.swing.JPanel {
     
-    // 订票记录 dao
+    // Booking Record dao
     OrderDao orderDao = new OrderDao();
-    // 电影 dao
+    // Movie dao
     MovieDao movieDao = new MovieDao();
-    // 放映厅 dao
+    // Movie Room dao
     RoomDao roomDao = new RoomDao();
-    // 用户信息 dao
+    // User Information dao
     AccountDao accDao = new AccountDao();
     MainFrame frame;
     public final SeatPanel thisPanel;
     Schedule schedule;
     Movie movie;
-    // 用户选中的位置
+    // The location selected by the user
     int choosedSeat = -1;
-    // 保存所有的座位信息
+    // Save all seat information
      ArrayList<JButton> btns;  
     /**
      * Creates new form SeatPanel
@@ -81,7 +80,7 @@ public class SeatPanel extends javax.swing.JPanel {
         }
     }
     /**
-     * 设置选中的座位
+     * Sets the selected seat
      * @param i 
      */
     public final void setText(int i){
@@ -170,7 +169,7 @@ public class SeatPanel extends javax.swing.JPanel {
         order.setScheduleid(schedule.getId());
         order.setAccountid(frame.acc.getId());
         order.setSeat(choosedSeat);
-        order.setStatus(0);  // 0 是没有看 1 是看过了
+        order.setStatus(0);  // 0 means you haven't looked at 1 means you've seen it
         orderDao.addOrder(order);
         frame.acc.setBalance(frame.acc.getBalance() - schedule.getPrice());
         accDao.updateAccount(frame.acc);

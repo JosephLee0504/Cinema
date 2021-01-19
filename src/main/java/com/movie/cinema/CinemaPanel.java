@@ -17,7 +17,7 @@ import javax.swing.ScrollPaneConstants;
  */
 public class CinemaPanel extends javax.swing.JPanel {
 
-    // 影院信息 dao
+    // cinema message dao
     CinemaDao cinemaDao = new CinemaDao();
     /**
      * Creates new form CinemaPanel
@@ -29,7 +29,7 @@ public class CinemaPanel extends javax.swing.JPanel {
         updateData();
     }
     /**
-     * 更新电影院数据
+     * update the cinema data
      */
     private void updateData(){
         List<Cinema> list = cinemaDao.getCinemas();

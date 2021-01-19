@@ -22,9 +22,9 @@ import javax.swing.ScrollPaneConstants;
  */
 public class CinemaMoviesPanel extends javax.swing.JPanel {
 
-    // 排片信息 dao
+    // movie arrangement information dao
     ScheduleDao scheduleDao = new ScheduleDao();
-    // 影片信息 dao
+    // film information dao
     MovieDao movieDao = new MovieDao();
     
     Cinema cinema;
