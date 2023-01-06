@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Cinema.iml" filepath="$PROJECT_DIR$/Cinema.iml" />
+      <module fileurl="file://$PROJECT_DIR$/derby/demo/demo.iml" filepath="$PROJECT_DIR$/derby/demo/demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/main.iml" filepath="$PROJECT_DIR$/src/main/main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/derby/demo/programs/programs.iml" filepath="$PROJECT_DIR$/derby/demo/programs/programs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/derby/demo/programs/scores/scores.iml" filepath="$PROJECT_DIR$/derby/demo/programs/scores/scores.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/test/test.iml" filepath="$PROJECT_DIR$/src/test/test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/derby/demo/programs/vtis/vtis.iml" filepath="$PROJECT_DIR$/derby/demo/programs/vtis/vtis.iml" />
+    </modules>
+  </component>
+</project>
